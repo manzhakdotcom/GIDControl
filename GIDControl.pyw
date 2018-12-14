@@ -122,9 +122,9 @@ class App:
         about.add_command(label='О программе', command=self.top_level_about, accelerator="F1")
 
     def close(self, event=None):
+        self.root.destroy()
         self.control.do_run = False
         self.control.join()
-        self.root.destroy()
 
     def elements(self):
         self.frame = Frame(self.root)
