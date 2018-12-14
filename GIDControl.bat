@@ -1,0 +1,34 @@
+::[Bat To Exe Converter]
+::
+::YAwzoRdxOk+EWAjk
+::fBw5plQjdCyDJGmd4Eo/JidzZSChM2WuFLoQ1OH44OTJq04SNA==
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSDk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSDk=
+::eBoioBt6dFKZSDk=
+::cRo6pxp7LAbNWATEpCI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+IeA==
+::cxY6rQJ7JhzQF1fEqQJgZksaHErTXA==
+::ZQ05rAF9IBncCkqN+0xwdVsEAlTMbCXrZg==
+::ZQ05rAF9IAHYFVzEqQKA26us/PDCjLEK2AXBWQpKD1pZEpasuII=
+::eg0/rx1wNQPfEVWB+kM9LVsJDCOrGEi1CKEO5+Sb
+::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
+::cRolqwZ3JBvQF1fEqQKA16q0/Noy7ttvt1WtB1guXgjHE6mthFLmyFSb6pWcI+g0+ETiO5oi0TrqRXvcTKuFzsIbtb/sGInybtRQd3dLA99RlfhRV6qAwyU2N5RgXJvh0TPZcXLhY/gOKQ1PQBTwYaZPjRjupbNRHRy0iSJCs2o=
+::dhA7uBVwLU+EWOl4RJKA9auC/NQy5isKx/usKaab
+::YQ03rBFzNR3SWATElA==
+::dhAmsQZ3MwfNWATERL6A+KuJ/NIy7NtgRgXdplg6oYo=
+::ZQ0/vhVqMQ3MEVWAtB9wSA==
+::Zg8zqx1/OA3MEVWAtB9wSA==
+::dhA7pRFwIByZRRnk
+::Zh4grVQjdCyDJGmd4Eo/JidzZSChM2WuFLoQ1M/Sy8mIrFkPW+5xfZfeug==
+::YB416Ek+ZG8=
+::
+::
+::978f952a14a936cc963da21a135fa983
+start pythonw %cd%\GIDControl.pyw
