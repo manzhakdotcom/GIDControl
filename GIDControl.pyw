@@ -22,9 +22,10 @@ class Config:
             return True
 
     def create_config_file(self, config):
-        config['Settings'] = { 'path': 'c:\\неман\\System\\Log\\',
-                                'file': 'PArchGraf.log',
-                                      }
+        config['Settings'] = {'path': 'c:\\неман\\System\\Log\\',
+                              'file': 'PArchGraf.log',
+                              'key': 'Закрытие программы',
+                              }
         with open(self.file, "w", encoding='utf-8') as config_file:
             config.write(config_file)
         return config
@@ -65,10 +66,11 @@ class Handler(FileSystemEventHandler):
         settings = Config().options()
         print(event.src_path)
         if settings['Settings']['file'] in event.src_path:
-            with open(settings['Settings']['path']+settings['Settings']['file'], 'r') as file:
+            with open(settings['Settings']['path'] + settings['Settings']['file'], 'r') as file:
                 line = file.readlines()[-1]
                 if settings['Settings']['key'] in line:
-                    messagebox.showerror('Ошибка', 'Программа Архиватор ГИД выключена. Обратитесь к инженеру КТЦ для восстановления его работы.')
+                    messagebox.showerror('Ошибка',
+                                         'Программа Архиватор ГИД выключена. Обратитесь к инженеру КТЦ для восстановления его работы.')
 
 
 class Control:
@@ -133,7 +135,7 @@ class App:
         self.frame = Frame(self.root)
         self.frame.pack(ipady=20)
         self.btn_start = Button(self.frame, text='Запустить', command=self.run)
-        self.btn_stop = Button(self.frame, text='Остоновить', command=self.stop, state='disabled')
+        self.btn_stop = Button(self.frame, text='Остановить', command=self.stop, state='disabled')
         self.btn_start.pack(ipadx=20, ipady=10, side=LEFT)
         self.btn_stop.pack(ipadx=20, ipady=10, side=LEFT)
 
@@ -170,7 +172,8 @@ class App:
         frame = Frame(win)
         frame.pack()
 
-        label1 = Label(frame, text='Программа контролирует\nфайл PArchGraf.log на наличие\nзаписи "Закрытие программы".')
+        label1 = Label(frame,
+                       text='Программа контролирует\nналичие изменений в\nфайле PArchGraf.log')
         label2 = Label(frame, text='Автор © Манжак С.С.')
         label3 = Label(frame, text='Версия v' + self.root.version + ' Win 32')
 
@@ -194,7 +197,7 @@ def main():
     root.version = '0.0.1'
     root.resizable(0, 0)
     center(root, 280, 120, 0)
-    root.title('ГИД контроль')
+    root.title('ГИД Контроль')
     root.iconbitmap(os.getcwd() + os.path.sep + 'icon.ico')
     app = App(root)
     root.protocol("WM_DELETE_WINDOW", app.close)
