@@ -24,6 +24,7 @@ class Config:
     def create_config_file(self, config):
         config['Settings'] = {'path': 'c:\\неман\\System\\Log\\',
                               'file': 'PArchGraf.log',
+                              'key': 'Закрытие программы',
                               }
         with open(self.file, "w", encoding='utf-8') as config_file:
             config.write(config_file)
@@ -172,7 +173,7 @@ class App:
         frame.pack()
 
         label1 = Label(frame,
-                       text='Программа контролирует\nфайл PArchGraf.log на наличие\nзаписи "Закрытие программы".')
+                       text='Программа контролирует\nналичие изменений в\nфайле PArchGraf.log')
         label2 = Label(frame, text='Автор © Манжак С.С.')
         label3 = Label(frame, text='Версия v' + self.root.version + ' Win 32')
 
@@ -196,7 +197,7 @@ def main():
     root.version = '0.0.1'
     root.resizable(0, 0)
     center(root, 280, 120, 0)
-    root.title('ГИД контроль')
+    root.title('ГИД Контроль')
     root.iconbitmap(os.getcwd() + os.path.sep + 'icon.ico')
     app = App(root)
     root.protocol("WM_DELETE_WINDOW", app.close)
