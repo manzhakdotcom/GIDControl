@@ -60,9 +60,10 @@ class Config:
                 sys.exit(1)
 
 
-class MyHandler(FileSystemEventHandler):
+class Handler(FileSystemEventHandler):
     def on_modified(self, event):
         settings = Config().options()
+        print(event.src_path)
         if settings['Settings']['file'] in event.src_path:
             with open(settings['Settings']['path']+settings['Settings']['file'], 'r') as file:
                 line = file.readlines()[-1]
@@ -73,9 +74,10 @@ class MyHandler(FileSystemEventHandler):
 class Control:
     def __init__(self):
         path = sys.argv[1] if len(sys.argv) > 1 else self.get_path(Config().options())
-        event_handler = MyHandler()
+        event_handler = Handler()
         self.observer = Observer()
         self.observer.schedule(event_handler, path, recursive=True)
+        self._stop = False
 
     def get_path(self, data):
         path = data['Settings']['path']
@@ -84,7 +86,7 @@ class Control:
     def start(self):
         self.observer.start()
         print('Start')
-        while getattr(threading.currentThread(), "do_run", True):
+        while True and not self._stop:
             time.sleep(1)
         else:
             self.stop()
@@ -103,6 +105,7 @@ class App:
         self.root.bind('<Control-r>', self.run)
         self.menu()
         self.elements()
+        self.control = None
 
     def menu(self):
         self.root.option_add('*tearOff', False)
@@ -123,8 +126,8 @@ class App:
 
     def close(self, event=None):
         self.root.destroy()
-        self.control.do_run = False
-        self.control.join()
+        if self.control:
+            self.control._stop = True
 
     def elements(self):
         self.frame = Frame(self.root)
@@ -140,8 +143,9 @@ class App:
 
     def run(self, event=None):
         self.refresh()
-        self.control = threading.Thread(target=Control().start)
-        self.control.start()
+        self.control = Control()
+        self.process = threading.Thread(target=self.control.start)
+        self.process.start()
         self.btn_start['state'] = 'disabled'
         self.btn_stop['state'] = 'normal'
         self.btn_start.update()
@@ -149,8 +153,8 @@ class App:
 
     def stop(self, event=None):
         self.refresh()
-        self.control.do_run = False
-        self.control.join()
+        self.control._stop = True
+        self.process = None
         self.btn_start['state'] = 'normal'
         self.btn_stop['state'] = 'disabled'
         self.btn_start.update()
